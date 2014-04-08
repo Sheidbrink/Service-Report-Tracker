@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+
+{% block page %}
+<form action="{{ url_for('document.searchdocs') }}" method=post>
+	<h2>Motor</h2>
+	<div class="col-sm-6">
+		<label>Manufacturer</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Model</label>
+		<input type="text" name="model"/>
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Serial #</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Cat #</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Type</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>SF</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Design</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>PF</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Frame</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>RPM</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>HP</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Ins Class</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>KVA Code</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Nom Eff</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Date Code</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Enclosure</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Code</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Rating</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Temp.Rise</label>
+		<input type="text" /> &deg;C
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Name Plate Voltage</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Amps</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>#Leads</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Actual Voltage</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Amp Load - Rods</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Weights</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Motor Sheave Size</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>#Grooves</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Shaft Size</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Hub Type</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>No. Belts</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Power Band</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Type</label>
+		<input type="text" />
+	</div>
+	
+	<div class="col-sm-6">
+		<label>Length</label>
+		<input type="text" />
+	</div>
+	<div class="col-sm-12">
+		<h2>Controller</h2>
+	</div>
+	
+	<div class="col-sm-12">
+		<label>Manufacturer</label>
+	</div>
+	<div class="col-sm-6">
+		<input type=submit value=Submit name="submit">
+	</div>
+	<div class="col-sm-6">
+		<input type=submit value=Search name="search">
+	</div>
+</form>
+{% endblock %}
