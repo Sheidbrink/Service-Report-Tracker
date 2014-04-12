@@ -2,9 +2,12 @@ from flask import Flask, Blueprint, render_template, session, url_for, request, 
 from controller.Form import Form
 document = Blueprint('document', __name__)
 
+
 @document.route('/browse')
-def showdocs():
-	return render_template('service_report.html', active='bdocs')
+def dynamictest():
+	allFields  = [ ("name 1", "value1"), \
+					("name2" ,"value2") ]
+	return render_template('documentPage.html', active='bdocs', allFields=allFields)
 
 @document.route('/search', methods=['GET', 'POST'])
 def searchdocs():
@@ -20,3 +23,4 @@ def searchdocs():
 			flash('Submitted Successfully')
 			return redirect(url_for('document.showdocs'))
 		return render_template('service_report.html', active='bdocs')
+
