@@ -13,7 +13,10 @@ def dynamictest():
 def searchdocs():
 	if request.method == 'POST':
 		if "search" in request.form:
-			return "Search for something"
+			request = urllib2.Request("service_report.py")
+			response = urllib2.urlopen(req)
+			print req.read()
+
 		elif "submit" in request.form:
 			toSubmit = Form("FormTitle")
 			for key in request.form.keys():
