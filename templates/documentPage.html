@@ -4,10 +4,16 @@
 
 <form action="{{ url_for('document.searchdocs') }}" method=post>
 {% for field in allFields %}
+	{% if field is string %}
+	<div class="col-sm-12">
+		<label>{{ field }}</label>
+	</div>
+	{% else %}
 	<div class="col-sm-6">
 		<label>{{ field[0] }}</label>
-		<input type="text" value="{{ field[1] }}" />
+		<input type="text" name="{{ field[1] }}" />
 	</div>
+	{% endif %}
 {% endfor %}
 	<div class="col-sm-6">
 		<input type=submit value=Search name="search">

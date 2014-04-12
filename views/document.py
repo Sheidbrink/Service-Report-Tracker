@@ -1,13 +1,10 @@
 from flask import Flask, Blueprint, render_template, session, url_for, request, flash, redirect
-from controller.Form import Form
-import urllib2
 document = Blueprint('document', __name__)
 
 
 @document.route('/browse')
 def dynamictest():
-	allFields  = [ ("name 1", "value1"), \
-					("name2" ,"value2") ]
+	allFields  = loadDocument('Service Report')
 	return render_template('documentPage.html', active='bdocs', allFields=allFields)
 
 @document.route('/search', methods=['GET', 'POST'])
@@ -15,7 +12,6 @@ def searchdocs():
 	if(request.method == 'POST'):
 		if "search" in request.form:
 			return search()
-
 		elif "submit" in request.form:
 			return submit()
 
@@ -40,5 +36,23 @@ def submit():
 	flash('Submitted Successfully')
 	return redirect(url_for('document.showdocs'))
 
-def loadDocument(name):
-	file = open('../templates/reports.txt')
+def loadDocument(formName):
+	file = open('templates/reports.txt')
+	partOfForm = False
+	toReturn = []
+	for line in file.readlines():
+		if '\t' not in line:
+			partOfForm = False
+		if formName in line:
+			partOfForm = True
+			continue
+		if partOfForm:
+			line = line.replace('\t', '')
+			line = line.replace('\n', '')
+			pair = line.split(' : ')
+			if len(pair) == 1:
+				toReturn.append(pair[0])
+			else:
+				myTuple = pair[0], pair[1]
+				toReturn.append(myTuple)
+	return toReturn
