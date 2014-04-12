@@ -11,7 +11,27 @@ class DBCommunicator(object):
         self.client = MongoClient(hostname, port)
         self.db = client[dbname]
 
+    def addDictionary(self, formName, myDict)
+        if type(myDict) is type({}):
+            collectionName = formName
+            collection = self.db[collectionName]
+            collection.insert(myDict)
+
+    def find(self, formName, myDict)
+        collectionName = formName
+        collection = self.db[collectionName]
+        toReturn = []
+        for item in collection.find(myDict):
+            toReturn.append(item)
+        return toReturn
+
+
+
+
+
+'''
     def AddForm(self, form)
+
         if type(form) is Form.Form:
             collection = self.db[form['Name'].replace(' ','-')]
             collection.insert(form)
@@ -33,3 +53,4 @@ class DBCommunicator(object):
         formName = formName.replace(' ','-')
         collection = self.db[formName]
         return collection.find()
+'''

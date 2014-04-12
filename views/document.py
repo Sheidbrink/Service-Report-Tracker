@@ -39,3 +39,5 @@ def submit():
 		print "add:" + key +"value:" + request.form[key]
 	flash('Submitted Successfully')
 	return redirect(url_for('document.showdocs'))
+def loadDocument(name)
+	file = open('../templates/reports.txt')
