@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint, render_template, session, url_for, request, flash, redirect
 from controller.Form import Form
+import urllib2
 document = Blueprint('document', __name__)
 
 
@@ -11,19 +12,30 @@ def dynamictest():
 
 @document.route('/search', methods=['GET', 'POST'])
 def searchdocs():
-	if request.method == 'POST':
+	if(request.method == 'POST'):
 		if "search" in request.form:
-			request = urllib2.Request("service_report.py")
-			response = urllib2.urlopen(req)
-			print req.read()
+			return search()
 
 		elif "submit" in request.form:
-			toSubmit = Form("FormTitle")
-			for key in request.form.keys():
-				if key == "submit":
-					continue
-				print "add:" + key +"value:" + request.form[key]
-			flash('Submitted Successfully')
-			return redirect(url_for('document.showdocs'))
-		return render_template('service_report.html', active='bdocs')
+			return submit()
 
+	return render_template('service_report.html', active='bdocs')
+
+@document.route('/api', methods=['GET', 'POST'])
+def api():
+	if request.method == 'GET':
+		return search()
+	elif request.method == 'POST':
+		return submit()
+
+def search():
+	return "Searching..."
+
+def submit():
+	toSubmit = Form("FormTitle")
+	for key in request.form.keys():
+		if key == "submit":
+			continue
+		print "add:" + key +"value:" + request.form[key]
+	flash('Submitted Successfully')
+	return redirect(url_for('document.showdocs'))
