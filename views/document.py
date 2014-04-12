@@ -25,5 +25,7 @@ def searchdocs():
 				print "add:" + key +"value:" + request.form[key]
 			flash('Submitted Successfully')
 			return redirect(url_for('document.showdocs'))
-		return render_template('service_report.html', active='bdocs')
+		return render_template('documentPage.html', active='bdocs')
 
+def loadDocument(name)
+	file = open('../templates/reports.txt')
