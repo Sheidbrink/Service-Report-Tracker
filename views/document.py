@@ -1,5 +1,6 @@
 from flask import Flask, Blueprint, render_template, session, url_for, request, flash, redirect
 from controller.controller import search, submit, loadDocument
+import datetime
 document = Blueprint('document', __name__)
 
 
@@ -23,15 +24,18 @@ def searchdocs():
 			del form['search']
 			matchedDict = search(formName, form)
 			if(len(matchedDict) >= 1):
-				flash('Search Successful')
+				cdate = matchedDict[0]['submittedOn']
+				flash(str(cdate.date()) + ' ' + str(cdate.hour) + \
+					':' + str(cdate.minute) + ':' + str(cdate.second) + ' - Search Successful')
 				return renderDocument(formName, matchedDict[0])
 			else:
-				flash('Invalid Search')
+				flash('Nothing Matching Search')
 				return redirect(url_for('document.renderDocument', \
 					document=formName))
 		#Submit
 		elif "submit" in request.form:
 			del form['submit']
+			form['submittedOn'] = datetime.datetime.utcnow()
 			successful = submit(formName, form)
 			if successful:
 				flash('Submitted Successfully')

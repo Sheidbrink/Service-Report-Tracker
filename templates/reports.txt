@@ -33,7 +33,6 @@ Service Report
 		Power Band : Power Band
 		Type : Type
 		Length : Length
-		Manufacturer : Manufacturer
 	Controller
 		Manufactuerer : cManufacturer
 		No : cNo
