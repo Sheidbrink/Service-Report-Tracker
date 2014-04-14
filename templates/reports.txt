@@ -1,0 +1,58 @@
+Service Report
+	Motor
+		Manufacturer : Manufacturer
+		Model : Model
+		Serial # : Serial #
+		Cat # : Cat #
+		Type : Type
+		SF : SF
+		Design : Design
+		PF : PF
+		Frame : Frame
+		RPM : RPM
+		HP : HP
+		Ins Class : Ins Class
+		KVA Code : KVA Code
+		Nom Eff : Nom Eff
+		Date Code : Date Code
+		Enclosure : Enclosure
+		Code : Code
+		Rating : Rating
+		Temp.Rise : TempRise
+		Name Plate Voltage : Name Plate Voltage
+		Amps : Amps
+		#Leads : #Leads
+		Actual Voltage : Actual Voltage
+		Amp Load - Rods : Amp Load - Rods
+		Weights : Weights
+		Motor Sheave Size : Motor Sheave Size
+		#Grooves : #Grooves
+		Shaft Size : Shaft Size
+		Hub Type : Hub Type
+		No. Belts : No Belts
+		Power Band : Power Band
+		Type : Type
+		Length : Length
+		Manufacturer : Manufacturer
+	Controller
+		Manufactuerer : cManufacturer
+		No : cNo
+		Style : cStyle
+		Ser. : cSer
+		G.O.# : GO#
+		Fuse Clip Size : FCSize
+		Fuses : cFuses
+		Main Breaker-Manufacturer : MBManufacturer
+		Size : MBSize
+		Cat : MBCat
+		Style : MBStyle
+		Thermo : Thermo
+		Starter-Manufacturer : SMan
+		Size : SSize
+		Cat : SCat
+		Holding Coil# : HoldingC#
+		Holding Coil Voltage : Holding Coild Voltage
+		Heater Coil # : HC#
+		Rated from : RFrom
+		to : t
+		Set at : setat

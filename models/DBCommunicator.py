@@ -9,27 +9,48 @@ class DBCommunicator(object):
     # Perhaps have each user who logs in as a different database?
     def __init__(self, dbname, hostname='localhost', port=27017):
         self.client = MongoClient(hostname, port)
-        self.db = client[dbname]
+        self.db = self.client[dbname]
 
-    def addDictionary(self, formName, myDict)
-        if type(myDict) is type({}):
-            collectionName = formName
-            collection = self.db[collectionName]
-            collection.insert(myDict)
-
-    def find(self, formName, myDict)
+    def addDictionary(self, formName, myDict): 
         collectionName = formName
         collection = self.db[collectionName]
+        collection.insert(myDict)
+
+    def find(self, formName, myDict):
+        collectionName = formName
+        collection = self.db[collectionName]
+        myDict = DBCommunicator.removeEmpty(myDict)
         toReturn = []
         for item in collection.find(myDict):
             toReturn.append(item)
         return toReturn
 
+    @staticmethod
+    def removeEmpty(aDictionary):
+        toReturn = {}
+        for key in aDictionary.keys():
+            if aDictionary[key]:
+                toReturn[key] = aDictionary[key]
+        return toReturn
 
+    @staticmethod
+    def getInstance():
+        return DBCommunicator('myDB')
 
+'''@staticmethod
+    def putBadValues(aDictionary):
+        toReturn = {}
+        for key in aDictionary.keys():
+            toReturn[key.replace('*badValue*', '.')] = aDictionary[key]
+        return toReturn
 
+    @staticmethod
+    def replaceBadValues(aDictionary):
+        toReturn = {}
+        for key in aDictionary.keys():
+            toReturn[key.replace('.', '*badValue*')] = aDictionary[key]
+        return toReturn
 
-'''
     def AddForm(self, form)
 
         if type(form) is Form.Form:

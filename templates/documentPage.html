@@ -2,20 +2,29 @@
 
 {% block page %}
 
+<h1>{{ formName }}</h1>
+
 <form action="{{ url_for('document.searchdocs') }}" method=post>
+
+	<input type="hidden" name="formName" value="{{ formName }}">
+
 {% for field in allFields %}
 	{% if field is string %}
 	<div class="col-sm-12">
-		<label>{{ field }}</label>
+		<h2>{{ field }}</h2>
 	</div>
 	{% else %}
 	<div class="col-sm-6">
 		<label>{{ field[0] }}</label>
-		<input type="text" name="{{ field[1] }}" />
+		<input type="text" name="{{ field[1] }}" 
+			{% if field[1] in formValues.keys() %}
+				value="{{ formValues[field[1]] }}" 
+			{% endif %}/>
 	</div>
 	{% endif %}
 {% endfor %}
-	<div class="col-sm-6">
+	<div class="col-sm-12" id="bottomButtons">
+		<input type=submit value=Submit name="submit">
 		<input type=submit value=Search name="search">
 	</div>
 </form>
