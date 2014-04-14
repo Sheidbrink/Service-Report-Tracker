@@ -1,5 +1,4 @@
 from pymongo import MongoClient
-from controller.Form import Form
 
 ''' Each collection is a collection of Forms
     Perhaps each database is user or company '''
