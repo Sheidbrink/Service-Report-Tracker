@@ -4,11 +4,11 @@ import datetime
 document = Blueprint('document', __name__)
 
 
-@document.route('/browse/<document>')
-def renderDocument(document, docValues={}):
-	allFields  = loadDocument(document)
+@document.route('/create/<formName>')
+def renderDocument(formName):
+	allFields  = loadDocument(formName)
 	return render_template('documentPage.html', active='bdocs', \
-		formName=document, allFields=allFields, formValues=docValues)
+		formName=formName, allFields=allFields, formValues=docValues, selected=selected)
 
 @document.route('/search', methods=['POST'])
 def searchdocs():
@@ -27,7 +27,7 @@ def searchdocs():
 				cdate = matchedDict[0]['submittedOn']
 				flash(str(cdate.date()) + ' ' + str(cdate.hour) + \
 					':' + str(cdate.minute) + ':' + str(cdate.second) + ' - Search Successful')
-				return renderDocument(formName, matchedDict[0])
+				return renderDocument(formName, matchedDict, 0)
 			else:
 				flash('Nothing Matching Search')
 				return redirect(url_for('document.renderDocument', \

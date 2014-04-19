@@ -3,6 +3,15 @@
 {% block page %}
 <div class="container">
 <div class="col-sm-12"><h1>{{ formName }}</h1></div>
+	{% if formValues|length %}
+	<div class ='col-sm-3 col-md-2 sidebar'>
+		<ul class="nav nav-sidebar">
+			{% for value in formValues %}
+			<li><a href="">{{ value['submittedOn'] }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
 	<div class="container col-sm-9">
 		<form action="{{ url_for('document.searchdocs') }}" method=post>
 			<input type="hidden" name="formName" value="{{ formName }}">
@@ -17,13 +26,14 @@
 				{% else %}
 				<div class='col-sm-6'>
 					<label>{{ field[0] }}</label>
-					<input type="text" name="{{ field[1] }}"/>
+					<input type="text" name="{{ field[1] }}" {% if field[1] in formValues[selected].keys() %} value="{{ formValues[selected][field[1]] }}" {% endif %}/>
 				</div>
 				{% endif %}
 				{% endfor %}
 			</div>
 			<div class="col-sm-12" id="bottomButtons">
-				<input type=submit value=Submit name="save">
+				<input type=submit value=Submit name="submit">
+				<input type=submit value=Search name="search">
 			</div>
 		</form>
 	</div>
