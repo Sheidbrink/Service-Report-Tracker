@@ -3,6 +3,7 @@ from controller.controller import search, submit, loadDocument
 import datetime
 document = Blueprint('document', __name__)
 
+searchedValues = []
 
 @document.route('/create/<formName>')
 def createDocument(formName):
@@ -33,6 +34,14 @@ def submitdoc():
 		return redirect(url_for('document.createDocument', \
 			formName=formName))#, docValues=form)
 
+@document.route('/display/<formName><selectedIndex>', methods=['GET'])
+def displaydoc(formName, selectedIndex):
+	selectedIndex = int(selectedIndex)
+	allFields = loadDocument(formName)
+	return render_template('search.html', formName=formName, \
+		allFields=allFields, active='search', formValues=searchedValues, \
+		selectedIndex=selectedIndex)
+
 @document.route('/search/<formName>', methods=['POST', 'GET'])
 def searchdocs(formName):
 	if (request.method == 'GET'):
@@ -43,22 +52,21 @@ def searchdocs(formName):
 	elif (request.method == 'POST'):
 		form = {}
 		formName = request.form['formName']
-		
 		for key in request.form.keys():
 			form[key] = request.form[key]
 		del form['formName']
-		#Search
-		del form['search']
+		del form['Search']
 		matchedDict = search(formName, form)
+		global searchedValues
+		searchedValues = matchedDict
 		if(len(matchedDict) >= 1):
-			cdate = matchedDict[0]['submittedOn']
-			flash(str(cdate.date()) + ' ' + str(cdate.hour) + \
-				':' + str(cdate.minute) + ':' + str(cdate.second) + ' - Search Successful')
-			return createDocument(formName, matchedDict, 0)
+			allFields = loadDocument(formName)
+			return redirect(url_for('document.displaydoc', \
+				formName=formName, selectedIndex=0))
 		else:
 			flash('Nothing Matching Search')
-			return redirect(url_for('document.createDocument', \
-				document=formName))
+			return redirect(url_for('document.searchdocs', \
+				formName=formName))
 			
 
 @document.route('/api', methods=['GET', 'POST'])

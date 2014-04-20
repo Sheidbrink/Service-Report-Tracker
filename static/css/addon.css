@@ -4,3 +4,7 @@
 #bottomButtons {
 	padding-top: 20px;
 }
+
+.submittedValue {
+	text-decoration: underline;
+}

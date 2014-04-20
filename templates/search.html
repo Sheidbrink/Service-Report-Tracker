@@ -6,36 +6,37 @@
 	{% if formValues|length %}
 	<div class ='col-sm-3 col-md-2 sidebar'>
 		<ul class="nav nav-sidebar">
+			{% set count = 0 %}
 			{% for value in formValues %}
-			<li><a href="">{{ value['submittedOn'] }}</a></li>
+			<li><a href="{{ url_for('document.displaydoc', formName=formName, selectedIndex=count) }}">{{ value['submittedOn'] }}</a></li>
+			{% set count = count + 1 %}
 			{% endfor %}
 		</ul>
 	</div>
 	{% endif %}
 	<div class="container col-sm-9">
-		<form action="{{ url_for('document.searchdocs') }}" method=post>
-			<input type="hidden" name="formName" value="{{ formName }}">
-			<div class="container">
-				{% for field in allFields %}
-				{% if field is string %}
+		<div class="container">
+			{% for field in allFields %}
+			{% if field is string %}
+		</div>
+		<div class='col-sm-12'>
+			<h2>{{ field }}</h2>
+		</div>
+		<div class="container">
+			{% else %}
+			<div class='col-sm-6'>
+				<label>{{ field[0] }}:</label>
+				<label class="submittedValue">
+					{% if field[1] in formValues[selectedIndex].keys() %}
+					{{ formValues[selectedIndex][field[1]] }}
+					{% else %}
+					EMPTY
+					{% endif %}
+				</label>
 			</div>
-			<div class='col-sm-12'>
-				<h2>{{ field }}</h2>
-			</div>
-			<div class="container">
-				{% else %}
-				<div class='col-sm-6'>
-					<label>{{ field[0] }}</label>
-					<input type="text" name="{{ field[1] }}" {% if field[1] in formValues[selected].keys() %} value="{{ formValues[selected][field[1]] }}" {% endif %}/>
-				</div>
-				{% endif %}
-				{% endfor %}
-			</div>
-			<div class="col-sm-12" id="bottomButtons">
-				<input type=submit value=Submit name="submit">
-				<input type=submit value=Search name="search">
-			</div>
-		</form>
+			{% endif %}
+			{% endfor %}
+		</div>
 	</div>
 </div>
 {% endblock %}
