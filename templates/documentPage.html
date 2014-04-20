@@ -4,7 +4,7 @@
 <div class="container">
 <div class="col-sm-12"><h1>{{ formName }}</h1></div>
 	<div class="container col-sm-9">
-		<form action="{{ url_for('document.searchdocs') }}" method=post>
+		<form action="{{ submitURL }}" method=post>
 			<input type="hidden" name="formName" value="{{ formName }}">
 			<div class="container">
 				{% for field in allFields %}
@@ -23,7 +23,7 @@
 				{% endfor %}
 			</div>
 			<div class="col-sm-12" id="bottomButtons">
-				<input type=submit value=Submit name="save">
+				<input type=submit value={{ buttonName }} name="{{ buttonName }}">
 			</div>
 		</form>
 	</div>
