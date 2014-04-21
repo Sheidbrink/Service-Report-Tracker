@@ -4,7 +4,7 @@ Service Report
 		Model : Model
 		Serial # : Serial #
 		Cat # : Cat #
-		Type : Type1
+		Type : Type
 		SF : SF
 		Design : Design
 		PF : PF
@@ -31,7 +31,7 @@ Service Report
 		Hub Type : Hub Type
 		No. Belts : No Belts
 		Power Band : Power Band
-		Type : Type2
+		Type : Type
 		Length : Length
 	Controller
 		Manufactuerer : cManufacturer
