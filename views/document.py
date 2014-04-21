@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint, render_template, session, url_for, request, flash, redirect
 from controller.controller import search, submit, loadDocument
 import datetime
+import json
 document = Blueprint('document', __name__)
 
 searchedValues = []
@@ -71,7 +72,27 @@ def searchdocs(formName):
 
 @document.route('/api', methods=['GET', 'POST'])
 def api():
+	if 'formName' not in request.headers:
+		return 'No \'formName\' given'
+	formName = request.headers['formName']
+	allFields = loadDocument(formName)
+	form = {}
+	request.headers.keys()
+	for key in request.headers.keys():
+		if key in allFields:
+			form[key] = request.headers[key]
 	if request.method == 'GET':
-		return search(request.form.copy())
+		matched = search(formName, form)
+		toReturn = []
+		for doc in matched:
+			doc['submittedOn'] = str(doc['submittedOn'])
+			del doc['_id']
+			toReturn.append(doc)
+		return json.dumps(toReturn)
 	elif request.method == 'POST':
-		return submit(request.form.copy())
+		form['submittedOn'] = datetime.datetime.utcnow()
+		successful = submit(formName, form)
+		if successful:
+			return "Submitted Successfully"
+		else:
+			return "Submit Failes"
