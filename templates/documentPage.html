@@ -2,7 +2,7 @@
 
 {% block page %}
 <div class="container">
-<div class="col-sm-12"><h1>{{ formName }}</h1></div>
+<div class="col-sm-12" id="formName"><h1>{{ formName }}</h1></div>
 	<div class="container col-sm-9">
 		<form action="{{ submitURL }}" method=post>
 			<input type="hidden" name="formName" value="{{ formName }}">
@@ -12,18 +12,19 @@
 			</div>
 			<div class='col-sm-12'>
 				<h2>{{ field }}</h2>
+				<hr class="alert-info"/>
 			</div>
 			<div class="container">
 				{% else %}
 				<div class='col-sm-6'>
-					<label>{{ field[0] }}</label>
+					<label class="formLabel" >{{ field[0] }}</label>
 					<input type="text" name="{{ field[1] }}"/>
 				</div>
 				{% endif %}
 				{% endfor %}
 			</div>
 			<div class="col-sm-12" id="bottomButtons">
-				<input type=submit value={{ buttonName }} name="{{ buttonName }}">
+				<input class="btn btn_lg btn-success" type=submit value={{ buttonName }} name="{{ buttonName }}">
 			</div>
 		</form>
 	</div>

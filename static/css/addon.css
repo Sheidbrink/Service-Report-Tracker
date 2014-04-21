@@ -6,5 +6,12 @@
 }
 
 .submittedValue {
-	text-decoration: underline;
+}
+
+.formLabel {
+	font-weight: bold;
+}
+
+#formName {
+	background-color: #eee
 }

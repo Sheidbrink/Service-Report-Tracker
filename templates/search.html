@@ -2,7 +2,7 @@
 
 {% block page %}
 <div class="container">
-<div class="col-sm-12"><h1>{{ formName }}</h1></div>
+<div class="col-sm-12" id="formName"><h1>{{ formName }}</h1></div>
 	{% if formValues|length %}
 	<div class ='col-sm-3 col-md-2 sidebar'>
 		<ul class="nav nav-sidebar">
@@ -21,14 +21,19 @@
 		</div>
 		<div class='col-sm-12'>
 			<h2>{{ field }}</h2>
+			<hr class="alert-info"/>
 		</div>
 		<div class="container">
 			{% else %}
 			<div class='col-sm-6'>
-				<label>{{ field[0] }}:</label>
+				<label class="formLabel">{{ field[0] }}:</label>
 				<label class="submittedValue">
 					{% if field[1] in formValues[selectedIndex].keys() %}
-					{{ formValues[selectedIndex][field[1]] }}
+						{% if formValues[selectedIndex][field[1]] == '' %}
+						EMPTY
+						{% else %}
+						{{ formValues[selectedIndex][field[1]] }}
+						{% endif %}
 					{% else %}
 					EMPTY
 					{% endif %}
