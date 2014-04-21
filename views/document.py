@@ -95,4 +95,4 @@ def api():
 		if successful:
 			return "Submitted Successfully"
 		else:
-			return "Submit Failes"
+			return "Submit Failed"
